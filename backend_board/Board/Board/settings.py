@@ -24,14 +24,18 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 secret_file = os.path.join(BASE_DIR, 'secrets.json')
 
-with open(secret_file) as f:
-    secrets = json.loads(f.read())
-
+try:
+    with open(secret_file) as f:
+        secrets = json.loads(f.read())
+except FileNotFoundError:
+    error_msg = f'Check File Path {secret_file}'
+    raise ImproperlyConfigured(error_msg)
+    
 def get_secret(setting):
     try:
         return secrets[setting]
     except KeyError:
-        error_msg = 'Set the {} ec'
+        error_msg = f'Set the {setting} enviroment variable'
         raise ImproperlyConfigured(error_msg)
     
 SECRET_KEY = get_secret('SECRET_KEY')
@@ -51,6 +55,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
