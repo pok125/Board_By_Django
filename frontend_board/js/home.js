@@ -1,3 +1,5 @@
+import { apiGet } from "./fetchAPI.js";
+
 const $chatBtn = document.getElementById("btn-chat");
 const $loginBtn = document.getElementById("btn-login");
 const $logoutBtn = document.getElementById("btn-logout");
@@ -27,3 +29,6 @@ for (let i = 0; i < sortList.length; i++) {
     option.textContent = sortList[i];
     $sort.appendChild(option);
 }
+
+const homeURL = "http://127.0.0.1:8000/";
+const res = await apiGet(homeURL);
