@@ -20,16 +20,16 @@ let sortList = ["조회순", "최신순"];
 async function loadPost() {
     try {
         const datas = await apiGet(URL.homeURL);
-    
+
         return datas;
     } catch (err) {
         console.log(err);
     }
 }
 
-function render() {
-    const datas = loadPost();
-    postCount = datas.length();
+async function render() {
+    const datas = await loadPost();
+    postCount = datas.length;
 
     $mainDesc.innerHTML = `<strong>${postCount}개</strong>의 게시글이 있습니다.`;
 

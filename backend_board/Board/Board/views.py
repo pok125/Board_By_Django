@@ -10,6 +10,6 @@ class HomeView(APIView):
 
     def get(self, request):
         posts = Post.objects.all()
-        serialized_posts = [PostSerializer(post) for post in posts]
+        serialized_posts = PostSerializer(posts, many=True)
 
-        return Response(serialized_posts, status=status.HTTP_200_OK)
+        return Response(serialized_posts.data, status=status.HTTP_200_OK)
