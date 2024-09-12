@@ -69,6 +69,20 @@ function createPost(datas) {
         const $writer = document.createElement("td");
         const $date = document.createElement("td");
         const $viewCount = document.createElement("td");
+        const $content = document.createElement("a");
+        const $checkBoxBtn = document.createElement("input");
+
+        $checkBoxBtn.type = "checkbox";
+        $checkBoxBtn.id = `check${i}`;
+        $checkBox.append($checkBoxBtn);
+        
+        $postNum.textContent = datas[i].id;
+        $content.textContent = datas[i].title;
+        $title.append($content);
+        $writer.textContent = "글쓴이";
+        $date.textContent = datas[i].created_at;
+        $viewCount.textContent = datas[i].views;
+
 
         $post.append($checkBox, $postNum, $title, $writer, $date, $viewCount);
         $postList.appendChild($post);
