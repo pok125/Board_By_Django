@@ -32,6 +32,8 @@ class MyUser(AbstractBaseUser):
     nickname = models.CharField(max_length=20)
     created_at = models.DateField(auto_now_add=True)
     updated_at = models.DateField(auto_now=True)
+    is_active = models.BooleanField(default=True)
+    is_admin = models.BooleanField(default=False)
 
     objects = MyUserManager()
 
